@@ -1,1 +1,1 @@
-web: gunicorn assisto.wsgi --log-file -
+web: gunicorn tu_proyecto.wsgi
