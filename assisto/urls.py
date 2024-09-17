@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 from rest_framework.routers import DefaultRouter
 from users.views import UserViewSet, LoginView
 from subscriptions.views import SubscriptionViewSet
@@ -13,6 +14,9 @@ router.register(r'subscriptions', SubscriptionViewSet)
 
 # Define las URL
 urlpatterns = [
+    # Redirige la URL raíz a Swagger UI
+    path('', RedirectView.as_view(url='/api/schema/swagger-ui/', permanent=False)),
+    
     path('admin/', admin.site.urls),  # Agrega la ruta para el panel de administración
     path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
